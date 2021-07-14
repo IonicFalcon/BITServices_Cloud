@@ -1,0 +1,115 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="LoggedInMaster.master.cs" Inherits="BITServices_WebForms.LoggedInMaster" %>
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - BIT Services</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/LogoSmall.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Scripts/css/site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+                <asp:ScriptReference Path="~/Scripts/js/site.js" />
+            </Scripts>
+        </asp:ScriptManager>
+
+       
+       <header class="w3-top">
+            <div class="w3-bar w3-padding w3-card topBar">
+                <a class="w3-bar-item w3-button logoLink" runat="server" id="ancHome">
+                    <img src="Images/FullLogo.svg" id="Logo" width="200" alt="BIT Services" />
+                </a>
+
+                <!-- Float links to the right. Hide them on small screens -->
+                <nav class="w3-hide-small w3-text-white">
+                    <asp:Label CssClass="w3-bar-item removeFloat" runat="server" ID="lblWelcomeMessage" Text="Welcome, USER" Font-Italic="true" />
+                    <asp:ImageButton CssClass="w3-button profilePic" ID="btnProfilePic" ImageUrl="~/Images/Portrait_Placeholder.png" OnClientClick="return ToggleAccountDropdown()" runat="server" AutoPostBack="false"/>
+                   
+                    <script>
+                        function ToggleAccountDropdown() {
+                            accountDropdown = document.querySelector("#AccountDropdown");
+                            isHidden = accountDropdown.style.display == "none" ? true : false;
+
+                            if (isHidden) {
+                                accountDropdown.style.display = "inline";
+                            } else {
+                                accountDropdown.style.display = "none";
+                            }
+
+                            return false;
+                        }
+                    </script>
+                </nav>
+
+                <div id="logoutModal" class="modal fade" tabindex="-1" role="dialog" data-backdrop="false">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Log Out Confirm</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to log out?</p>
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <asp:Button runat="server" CssClass="btn btn-primary" ID="btnLogout" Text="Log Out" OnClick="btnLogout_Click"  CausesValidation="false" UseSubmitBehavior="false"/>
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </header>
+
+        <div class="list-group" id="AccountDropdown" runat="server" style="display:none;">
+            <asp:Button runat="server" CssClass="list-group-item" ID="btnAccountDetails" Text="Account Details" />
+            <button class="list-group-item" data-target="#logoutModal" data-toggle="modal" onclick="return false;">Log Out</button>
+            
+        </div>
+
+        <div class="body-content MainContent">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            
+        </div>
+        <footer class="w3-center w3-black w3-padding-16">
+                 <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+                <p>&copy; Business Information Technology Pty Ltd <%: DateTime.Now.Year %> </p>
+                <p>All Rights Reserved</p>
+            </footer>
+
+    </form>
+</body>
+</html>

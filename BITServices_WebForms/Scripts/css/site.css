@@ -1,0 +1,78 @@
+﻿
+/* New CSS Styles
+    ------------------------------------------- */
+nav {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+}
+
+.topBar {
+    background-color: #ffbb8a;
+}
+
+
+#logoLink:hover, #logoLink:focus {
+    background: none !important;
+}
+
+#btnProfilePic{
+    padding: 0;
+    width: 5em;
+    border: 2px solid #999;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 5px;
+}
+
+.profilePic {
+    padding: 0;
+    width: 4em;
+    border: 2px solid #999;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 5px;
+}
+
+#Logo{
+    float: left;
+}
+
+.removeFloat{
+    float: none !important;
+    display: inline !important;
+    vertical-align:baseline;
+}
+
+#AccountDropdown{
+    width: 15em;
+    position: absolute;
+    right: 0.5em;
+}
+
+    #AccountDropdown input, #AccountDropdown button {
+            width: inherit;
+            background: #ffecde;
+            border: revert;
+            text-align: center;
+    }
+
+        #AccountDropdown input[type="submit"]:hover, #AccountDropdown button:hover {
+            background: #efe9e5
+        }
+
+.MainContent{
+     margin-top: 5em;
+     padding-top: 2em;
+}
+
+.GridViewButtons{
+    display: inline-block;
+    position: absolute;
+    right: 20%;
+}
+
+.GridViewSearch{
+    position: absolute;
+    right: 20%;
+}
